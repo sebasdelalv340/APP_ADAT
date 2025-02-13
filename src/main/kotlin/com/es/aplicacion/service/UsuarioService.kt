@@ -39,16 +39,16 @@ class UsuarioService : UserDetailsService {
     fun insertUser(usuarioInsertadoDTO: UsuarioRegisterDTO) : UsuarioDTO? {
         val usuarioExist = usuarioInsertadoDTO.let { usuarioRepository.findByUsername(it.username) }
 
-        val usuario = usuarioInsertadoDTO.rol?.let {
+        val usuario =
             Usuario(
                 null,
                 usuarioInsertadoDTO.username,
-                passwordEncoder.encode(usuarioInsertadoDTO.password),
+                usuarioInsertadoDTO.password,
                 usuarioInsertadoDTO.email,
-                it,
+                null,
                 usuarioInsertadoDTO.direccion
             )
-        }
+
 
         if (usuarioInsertadoDTO.password != usuarioInsertadoDTO.passwordRepeat) {
             throw BadRequestException("La contraseña no coincide")
@@ -57,11 +57,9 @@ class UsuarioService : UserDetailsService {
         if (usuarioExist.isPresent){
             throw BadRequestException("Usuario ${usuarioInsertadoDTO.username} ya existe")
         } else {
-            if (usuario != null) {
-                usuarioRepository.save(usuario)
-                return UsuarioDTO(usuario.username, usuario.email, usuario.roles)
-            }
+            usuarioRepository.save(usuario)
+            return UsuarioDTO(usuario.username, usuario.email, usuario.roles)
+
         }
-        return null
     }
 }
