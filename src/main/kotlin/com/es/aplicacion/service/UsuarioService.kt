@@ -44,6 +44,11 @@ class UsuarioService : UserDetailsService {
 
         val datosProvincias = apiService.obtenerDatosProvincias()
         val datosMunicipios = apiService.obtenerDatosMunicipios()
+
+        if (usuarioExist.isPresent) {
+            throw BadRequestException("Usuario existente")
+        }
+
 /*
         if (datosProvincias?.data != null) {
             datosProvincias.data.stream().filter {
