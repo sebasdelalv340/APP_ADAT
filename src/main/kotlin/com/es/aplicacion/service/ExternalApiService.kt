@@ -1,5 +1,5 @@
 package com.es.aplicacion.service
-/*
+
 import com.es.aplicacion.model.DatosMunicipios
 import com.es.aplicacion.model.DatosProvincias
 import org.springframework.beans.factory.annotation.Value
@@ -30,4 +30,3 @@ class ExternalApiService(private val webClient: WebClient.Builder) {
             .block()
     }
 }
- */
