@@ -4,6 +4,7 @@ import com.es.aplicacion.dto.LoginUsuarioDTO
 import com.es.aplicacion.dto.UsuarioDTO
 import com.es.aplicacion.dto.UsuarioRegisterDTO
 import com.es.aplicacion.error.exception.UnauthorizedException
+import com.es.aplicacion.model.Usuario
 import com.es.aplicacion.service.TokenService
 import com.es.aplicacion.service.UsuarioService
 import jakarta.servlet.http.HttpServletRequest
@@ -16,9 +17,11 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@RequestMapping("/usuarios")
 class UsuarioController {
 
     @Autowired
@@ -34,9 +37,9 @@ class UsuarioController {
         @RequestBody usuarioRegisterDTO: UsuarioRegisterDTO
     ) : ResponseEntity<UsuarioDTO>?{
 
-        // TODO: Implementar este metodo
+        val usuarioInsertado = usuarioService.insertUser(usuarioRegisterDTO)
 
-        return ResponseEntity(null, HttpStatus.CREATED)
+        return ResponseEntity(usuarioInsertado, HttpStatus.CREATED)
 
     }
 
