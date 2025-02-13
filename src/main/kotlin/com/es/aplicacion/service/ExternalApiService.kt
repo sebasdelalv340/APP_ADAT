@@ -5,7 +5,7 @@ import com.es.aplicacion.model.DatosProvincias
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-
+/*
 @Service
 class ExternalApiService(private val webClient: WebClient.Builder) {
     @Value("\${API_KEY}")
@@ -30,3 +30,5 @@ class ExternalApiService(private val webClient: WebClient.Builder) {
             .block()
     }
 }
+
+ */

@@ -4,7 +4,6 @@ import com.es.aplicacion.dto.LoginUsuarioDTO
 import com.es.aplicacion.dto.UsuarioDTO
 import com.es.aplicacion.dto.UsuarioRegisterDTO
 import com.es.aplicacion.error.exception.UnauthorizedException
-import com.es.aplicacion.model.Usuario
 import com.es.aplicacion.service.TokenService
 import com.es.aplicacion.service.UsuarioService
 import jakarta.servlet.http.HttpServletRequest

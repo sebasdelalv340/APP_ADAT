@@ -21,12 +21,12 @@ class UsuarioService : UserDetailsService {
     private lateinit var usuarioRepository: UsuarioRepository
     @Autowired
     private lateinit var passwordEncoder: PasswordEncoder
-    @Autowired
-    private lateinit var apiService: ExternalApiService
+    //@Autowired
+    //private lateinit var apiService: ExternalApiService
 
 
     override fun loadUserByUsername(username: String?): UserDetails {
-        var usuario: Usuario = usuarioRepository
+        val usuario: Usuario = usuarioRepository
             .findByUsername(username!!)
             .orElseThrow {
                 UnauthorizedException("$username no existente")
@@ -42,21 +42,8 @@ class UsuarioService : UserDetailsService {
     fun insertUser(usuarioInsertadoDTO: UsuarioRegisterDTO) : UsuarioDTO? {
         val usuarioExist = usuarioInsertadoDTO.let { usuarioRepository.findByUsername(it.username) }
 
-        val datosProvincias = apiService.obtenerDatosProvincias()
-        val datosMunicipios = apiService.obtenerDatosMunicipios()
-
-        if (usuarioExist.isPresent) {
-            throw BadRequestException("Usuario existente")
-        }
-
-/*
-        if (datosProvincias?.data != null) {
-            datosProvincias.data.stream().filter {
-                //it.pro
-            }
-        }
-
- */
+        //val datosProvincias = apiService.obtenerDatosProvincias()
+        //val datosMunicipios = apiService.obtenerDatosMunicipios()
 
         val usuario = usuarioInsertadoDTO.rol?.let {
             Usuario(
