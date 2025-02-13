@@ -58,5 +58,4 @@ class UsuarioController {
 
         return ResponseEntity(mapOf("token" to token), HttpStatus.CREATED)
     }
-
 }
